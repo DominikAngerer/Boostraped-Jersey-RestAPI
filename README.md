@@ -66,7 +66,7 @@ return ResourceContainer.deleted();
 You need an Container like Tomcat and clone this repository:
 
 ```git
-git clone [git-repo-url]
+git clone git@github.com:DominikAngerer/java-GsonJerseyProvider.git
 ```
 
 Import it into your favourite IDE (i'm using Eclipse Luna) and enjoy.
