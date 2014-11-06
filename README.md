@@ -19,21 +19,21 @@ I needed an working example, because I had some issues getting started only with
 First to get the class of [Moritz Post] running we need to do a little bit of configuration so Jersey knows to load the provider (`web.xml`):
 ```xml
 <servlet>
-		<servlet-name>Services</servlet-name>
-		<servlet-class>org.glassfish.jersey.servlet.ServletContainer</servlet-class>
-		<init-param>
-			<param-name>jersey.config.server.provider.packages</param-name>
-			<param-value>
-      			at.adtime.gson.provider.v1.util,
-      			at.adtime.gson.provider.v1.controller
-      		</param-value>
-		</init-param>
-		<init-param>
-			<param-name>jersey.config.server.provider.scanning.recursive</param-name>
-			<param-value>false</param-value>
-		</init-param>
-		<load-on-startup>1</load-on-startup>
-	</servlet>
+	<servlet-name>Services</servlet-name>
+	<servlet-class>org.glassfish.jersey.servlet.ServletContainer</servlet-class>
+	<init-param>
+		<param-name>jersey.config.server.provider.packages</param-name>
+		<param-value>
+  			at.adtime.gson.provider.v1.util,
+  			at.adtime.gson.provider.v1.controller
+  		</param-value>
+	</init-param>
+	<init-param>
+		<param-name>jersey.config.server.provider.scanning.recursive</param-name>
+		<param-value>false</param-value>
+	</init-param>
+	<load-on-startup>1</load-on-startup>
+</servlet>
 ```
 Now you should be able to run the example from [Moritz Post] but you will have to add the `GsonUtil` to get the version I provided in this repository as well - so let me explain it a little bit to you.
 
@@ -47,15 +47,15 @@ Why? Javascipt Frameworks like Ember can be used with an RESTAdapter which provi
 In this Repository you can find an simple Controller for `GET`ting an `List<Resource>` and simply `GET` an `Resource` by id. To Achieve this on an structured way I added an new `container` package which can be used for `resources` and also for an single `resource`. It also capsules the whole `Response.status(Response.Status.X).entity(Y).build();` stuff for you so you can simply use it like this in your Controller to return the action you performed with the right success status:
 
 ```java
-    return ResourceContainer.ok();
-    return ResourceContainer.ok(Resource);
-    return ResourceContainer.ok(Resource List);
-    return ResourceContainer.ok(Resource ArrayList);
-    return ResourceContainer.ok(Resource Collection);
-    return ResourceContainer.updated();
-    return ResourceContainer.updated(Resource);
-    return ResourceContainer.created(Resource);
-    return ResourceContainer.deleted();
+return ResourceContainer.ok();
+return ResourceContainer.ok(Resource);
+return ResourceContainer.ok(Resource List);
+return ResourceContainer.ok(Resource ArrayList);
+return ResourceContainer.ok(Resource Collection);
+return ResourceContainer.updated();
+return ResourceContainer.updated(Resource);
+return ResourceContainer.created(Resource);
+return ResourceContainer.deleted();
 ```
 
 ### Version
@@ -71,6 +71,15 @@ git clone [git-repo-url]
 
 Import it into your favourite IDE (i'm using Eclipse Luna) and enjoy.
 
+### Calls
+
+Don't mind if you get an 404 on path: `/`.
+
+- Get List of Resources
+`http://localhost:8080/at.adtime.gson.provider/v1/resources`
+
+- get Resource by Id
+`http://localhost:8080/at.adtime.gson.provider/v1/resources/b1e581bf-8265-480c-a460-50c860df15be`
 
 ### Thanks
 
