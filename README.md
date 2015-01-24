@@ -59,7 +59,7 @@ return ResourceContainer.deleted();
 ```
 
 ### Version
-1.0.0
+1.0.1
 
 ### Installation
 
@@ -73,7 +73,8 @@ Import it into your favourite IDE (i'm using Eclipse Luna) and enjoy.
 
 ### Calls
 
-Don't mind if you get an 404 on path: `/`.
+~~Don't mind if you get an 404 on path: `/`.~~
+Now it will return: `Okay, I hated the 404 Page here ;)`, because I really did.
 
 - Get List of Resources
 `http://localhost:8080/at.adtime.gson.provider/v1/resources`
