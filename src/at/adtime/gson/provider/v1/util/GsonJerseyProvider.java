@@ -39,14 +39,7 @@ public class GsonJerseyProvider implements MessageBodyWriter<Object>,
 		InputStreamReader streamReader = new InputStreamReader(entityStream,
 				UTF_8);
 		try {
-			Type jsonType;
-			if (type.equals(genericType)) {
-				jsonType = type;
-			} else {
-				jsonType = genericType;
-			}
-			return GsonUtil.getInstance()
-					.fromJson(streamReader, jsonType);
+			return GsonUtil.getInstance().fromJson(streamReader, genericType);
 		} catch (com.google.gson.JsonSyntaxException e) {
 			// Log exception
 		} finally {
@@ -75,13 +68,7 @@ public class GsonJerseyProvider implements MessageBodyWriter<Object>,
 			WebApplicationException {
 		OutputStreamWriter writer = new OutputStreamWriter(entityStream, UTF_8);
 		try {
-			Type jsonType;
-			if (type.equals(genericType)) {
-				jsonType = type;
-			} else {
-				jsonType = genericType;
-			}
-			GsonUtil.getInstance().toJson(object, jsonType, writer);
+			GsonUtil.getInstance().toJson(object, genericType, writer);
 		} finally {
 			writer.close();
 		}
