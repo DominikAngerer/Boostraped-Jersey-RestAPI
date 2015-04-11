@@ -1,4 +1,4 @@
-package at.adtime.gson.provider.v1.controller;
+package com.dominikangerer.gson.provider.v1.controller;
 
 import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;

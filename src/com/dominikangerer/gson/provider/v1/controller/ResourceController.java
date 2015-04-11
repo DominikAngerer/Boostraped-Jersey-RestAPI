@@ -1,4 +1,4 @@
-package at.adtime.gson.provider.v1.controller;
+package com.dominikangerer.gson.provider.v1.controller;
 
 import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
@@ -8,8 +8,8 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
-import at.adtime.gson.provider.v1.container.ResourceContainer;
-import at.adtime.gson.provider.v1.model.Resource;
+import com.dominikangerer.gson.provider.v1.container.ResourceContainer;
+import com.dominikangerer.gson.provider.v1.model.Resource;
 
 @Path("/v1/resources")
 public class ResourceController {

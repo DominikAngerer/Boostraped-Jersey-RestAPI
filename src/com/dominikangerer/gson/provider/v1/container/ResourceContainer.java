@@ -1,4 +1,4 @@
-package at.adtime.gson.provider.v1.container;
+package com.dominikangerer.gson.provider.v1.container;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -6,7 +6,7 @@ import java.util.List;
 
 import javax.ws.rs.core.Response;
 
-import at.adtime.gson.provider.v1.model.Resource;
+import com.dominikangerer.gson.provider.v1.model.Resource;
 
 public class ResourceContainer {
 	private class MetaContainer {

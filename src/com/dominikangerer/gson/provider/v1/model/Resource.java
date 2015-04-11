@@ -1,4 +1,4 @@
-package at.adtime.gson.provider.v1.model;
+package com.dominikangerer.gson.provider.v1.model;
 
 import java.util.ArrayList;
 import java.util.Date;

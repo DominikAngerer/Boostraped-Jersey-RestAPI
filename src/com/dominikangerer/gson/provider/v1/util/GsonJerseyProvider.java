@@ -1,4 +1,4 @@
-package at.adtime.gson.provider.v1.util;
+package com.dominikangerer.gson.provider.v1.util;
 
 import java.io.IOException;
 import java.io.InputStream;
