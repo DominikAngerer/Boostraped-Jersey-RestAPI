@@ -7,8 +7,8 @@
 		<init-param>
 			<param-name>jersey.config.server.provider.packages</param-name>
 			<param-value>
-      			at.adtime.gson.provider.v1.util,
-      			at.adtime.gson.provider.v1.controller
+      			com.dominikangerer.gson.provider.v1.util,
+      			com.dominikangerer.gson.provider.v1.controller
       		</param-value>
 		</init-param>
 		<init-param>
