@@ -24,8 +24,8 @@ First to get the class of [Moritz Post] running we need to do a little bit of co
 	<init-param>
 		<param-name>jersey.config.server.provider.packages</param-name>
 		<param-value>
-  			at.adtime.gson.provider.v1.util,
-  			at.adtime.gson.provider.v1.controller
+  			com.dominikangerer.gson.provider.v1.util,
+  			com.dominikangerer.gson.provider.v1.controller
   		</param-value>
 	</init-param>
 	<init-param>
@@ -77,20 +77,22 @@ Import it into your favourite IDE (i'm using Eclipse Luna) and enjoy.
 Now it will return: `Okay, I hated the 404 Page here ;)`, because I really did.
 
 - Get List of Resources
-`http://localhost:8080/at.adtime.gson.provider/v1/resources`
+`http://localhost:8080/gson.provider/v1/resources`
 
 - get Resource by Id
-`http://localhost:8080/at.adtime.gson.provider/v1/resources/b1e581bf-8265-480c-a460-50c860df15be`
+`http://localhost:8080/gson.provider/v1/resources/b1e581bf-8265-480c-a460-50c860df15be`
 
-### Thanks
+### Links
 
-Thanks again to: 
- - [Moritz Post] - Original Body Parser
- - [Mike Penz]
- - [Thomas Pink]
-
+- Blog Entry [@Lanora]: http://lanora.io/2014/11/gson-jersey-provider/
+- Stackoverflow #1: http://stackoverflow.com/a/9516224/1581725
+- Stackoverflow #2: http://stackoverflow.com/a/29551143/1581725
+- Eclipsesource by [Moritz Post]: http://eclipsesource.com/blogs/2012/11/02/integrating-gson-into-a-jax-rs-based-application/
 
 [@eclipsesource]:http://eclipsesource.com/blogs/2012/11/02/integrating-gson-into-a-jax-rs-based-application/
 [Moritz Post]:http://profiles.google.com/110380137820502036004
+[@Lanora]:http://lanora.io/2014/11/gson-jersey-provider/
 [Mike Penz]:https://github.com/mikepenz
 [Thomas Pink]:https://github.com/thomaspink
+[Stackoverflow#1]:http://stackoverflow.com/a/9516224/1581725
+[Stackoverflow#2]:http://stackoverflow.com/a/29551143/1581725
