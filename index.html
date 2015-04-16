@@ -1,0 +1,143 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <title>java-gsonjerseyprovider by DominikAngerer</title>
+
+    <link rel="stylesheet" href="stylesheets/styles.css">
+    <link rel="stylesheet" href="stylesheets/pygment_trac.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    <div class="wrapper">
+      <header>
+        <h1>java-gsonjerseyprovider</h1>
+        <p>GsonJerseyProvider is an example on how to use the Google Gson Library as an Provider on Jersey JAX-RS applications.</p>
+
+        <p class="view"><a href="https://github.com/DominikAngerer/java-GsonJerseyProvider">View the Project on GitHub <small>DominikAngerer/java-GsonJerseyProvider</small></a></p>
+
+
+        <ul>
+          <li><a href="https://github.com/DominikAngerer/java-GsonJerseyProvider/zipball/master">Download <strong>ZIP File</strong></a></li>
+          <li><a href="https://github.com/DominikAngerer/java-GsonJerseyProvider/tarball/master">Download <strong>TAR Ball</strong></a></li>
+          <li><a href="https://github.com/DominikAngerer/java-GsonJerseyProvider">View On <strong>GitHub</strong></a></li>
+        </ul>
+      </header>
+      <section>
+        <p>GsonJerseyProvider is an example on how to use the Google Gson Library as an Provider on Jersey JAX-RS applications.</p>
+
+<p>The original Version of the GsonJerseyProvidor.java can be found here: <a href="http://eclipsesource.com/blogs/2012/11/02/integrating-gson-into-a-jax-rs-based-application/">@eclipsesource</a>:</p>
+
+<blockquote>
+<p>Creating modern applications often involves consuming REST
+based web services. One of the more popular ways to publish 
+a REST service in Java is the JAX-RS (Jersey) specification.
+It allows you to very easily enhance your REST resources 
+with Java annotations.</p>
+</blockquote>
+
+<p>by <a href="http://profiles.google.com/110380137820502036004">Moritz Post</a>. </p>
+
+<p>I needed an working example, because I had some issues getting started only with his class and I couldn't just leave it dead on my disk.</p>
+
+<h4>
+<a id="the-configuration-part" class="anchor" href="#the-configuration-part" aria-hidden="true"><span class="octicon octicon-link"></span></a>The configuration part</h4>
+
+<p>First to get the class of <a href="http://profiles.google.com/110380137820502036004">Moritz Post</a> running we need to do a little bit of configuration so Jersey knows to load the provider (<code>web.xml</code>):</p>
+
+<div class="highlight highlight-xml"><pre>&lt;<span class="pl-ent">servlet</span>&gt;
+    &lt;<span class="pl-ent">servlet-name</span>&gt;Services&lt;/<span class="pl-ent">servlet-name</span>&gt;
+    &lt;<span class="pl-ent">servlet-class</span>&gt;org.glassfish.jersey.servlet.ServletContainer&lt;/<span class="pl-ent">servlet-class</span>&gt;
+    &lt;<span class="pl-ent">init-param</span>&gt;
+        &lt;<span class="pl-ent">param-name</span>&gt;jersey.config.server.provider.packages&lt;/<span class="pl-ent">param-name</span>&gt;
+        &lt;<span class="pl-ent">param-value</span>&gt;
+            com.dominikangerer.gson.provider.v1.util,
+            com.dominikangerer.gson.provider.v1.controller
+        &lt;/<span class="pl-ent">param-value</span>&gt;
+    &lt;/<span class="pl-ent">init-param</span>&gt;
+    &lt;<span class="pl-ent">init-param</span>&gt;
+        &lt;<span class="pl-ent">param-name</span>&gt;jersey.config.server.provider.scanning.recursive&lt;/<span class="pl-ent">param-name</span>&gt;
+        &lt;<span class="pl-ent">param-value</span>&gt;false&lt;/<span class="pl-ent">param-value</span>&gt;
+    &lt;/<span class="pl-ent">init-param</span>&gt;
+    &lt;<span class="pl-ent">load-on-startup</span>&gt;1&lt;/<span class="pl-ent">load-on-startup</span>&gt;
+&lt;/<span class="pl-ent">servlet</span>&gt;</pre></div>
+
+<p>Now you should be able to run the example from <a href="http://profiles.google.com/110380137820502036004">Moritz Post</a> but you will have to add the <code>GsonUtil</code> to get the version I provided in this repository as well - so let me explain it a little bit to you.</p>
+
+<h3>
+<a id="gsonutil" class="anchor" href="#gsonutil" aria-hidden="true"><span class="octicon octicon-link"></span></a>GsonUtil</h3>
+
+<p>In this GsonUtil I added the DateFormat <code>yyyy-MM-dd'T'HH:mm:ss.SSSXX</code> as default DateFormat to Gson by adding new <code>registerTypeAdapter</code> for serializing and deserializing. I also added the possibility to load a preconfigurated instance of Gson to show only properties with <code>@Expose</code> Annotation.</p>
+
+<h3>
+<a id="container" class="anchor" href="#container" aria-hidden="true"><span class="octicon octicon-link"></span></a>Container</h3>
+
+<p>Why? Javascipt Frameworks like Ember can be used with an RESTAdapter which provide such an pattern of responses - so why not return such an formated Json?</p>
+
+<p>In this Repository you can find an simple Controller for <code>GET</code>ting an <code>List&lt;Resource&gt;</code> and simply <code>GET</code> an <code>Resource</code> by id. To Achieve this on an structured way I added an new <code>container</code> package which can be used for <code>resources</code> and also for an single <code>resource</code>. It also capsules the whole <code>Response.status(Response.Status.X).entity(Y).build();</code> stuff for you so you can simply use it like this in your Controller to return the action you performed with the right success status:</p>
+
+<div class="highlight highlight-java"><pre><span class="pl-k">return</span> <span class="pl-smi">ResourceContainer</span><span class="pl-k">.</span>ok();
+<span class="pl-k">return</span> <span class="pl-smi">ResourceContainer</span><span class="pl-k">.</span>ok(<span class="pl-smi">Resource</span>);
+<span class="pl-k">return</span> <span class="pl-smi">ResourceContainer</span><span class="pl-k">.</span>ok(<span class="pl-smi">Resource</span> <span class="pl-smi">List</span>);
+<span class="pl-k">return</span> <span class="pl-smi">ResourceContainer</span><span class="pl-k">.</span>ok(<span class="pl-smi">Resource</span> <span class="pl-smi">ArrayList</span>);
+<span class="pl-k">return</span> <span class="pl-smi">ResourceContainer</span><span class="pl-k">.</span>ok(<span class="pl-smi">Resource</span> <span class="pl-smi">Collection</span>);
+<span class="pl-k">return</span> <span class="pl-smi">ResourceContainer</span><span class="pl-k">.</span>updated();
+<span class="pl-k">return</span> <span class="pl-smi">ResourceContainer</span><span class="pl-k">.</span>updated(<span class="pl-smi">Resource</span>);
+<span class="pl-k">return</span> <span class="pl-smi">ResourceContainer</span><span class="pl-k">.</span>created(<span class="pl-smi">Resource</span>);
+<span class="pl-k">return</span> <span class="pl-smi">ResourceContainer</span><span class="pl-k">.</span>deleted();</pre></div>
+
+<h3>
+<a id="version" class="anchor" href="#version" aria-hidden="true"><span class="octicon octicon-link"></span></a>Version</h3>
+
+<p>1.0.1</p>
+
+<h3>
+<a id="installation" class="anchor" href="#installation" aria-hidden="true"><span class="octicon octicon-link"></span></a>Installation</h3>
+
+<p>You need an Container like Tomcat and clone this repository:</p>
+
+<pre lang="git"><code>git clone git@github.com:DominikAngerer/java-GsonJerseyProvider.git
+</code></pre>
+
+<p>Import it into your favourite IDE (i'm using Eclipse Luna) and enjoy.</p>
+
+<h3>
+<a id="calls" class="anchor" href="#calls" aria-hidden="true"><span class="octicon octicon-link"></span></a>Calls</h3>
+
+<p><del>Don't mind if you get an 404 on path: <code>/</code>.</del>
+Now it will return: <code>Okay, I hated the 404 Page here ;)</code>, because I really did.</p>
+
+<ul>
+<li><p>Get List of Resources
+<code>http://localhost:8080/gson.provider/v1/resources</code></p></li>
+<li><p>get Resource by Id
+<code>http://localhost:8080/gson.provider/v1/resources/b1e581bf-8265-480c-a460-50c860df15be</code></p></li>
+</ul>
+
+<h3>
+<a id="links" class="anchor" href="#links" aria-hidden="true"><span class="octicon octicon-link"></span></a>Links</h3>
+
+<ul>
+<li>Blog Entry <a href="http://lanora.io/2014/11/gson-jersey-provider/">@Lanora</a>: <a href="http://lanora.io/2014/11/gson-jersey-provider/">http://lanora.io/2014/11/gson-jersey-provider/</a>
+</li>
+<li>Stackoverflow #1: <a href="http://stackoverflow.com/a/9516224/1581725">http://stackoverflow.com/a/9516224/1581725</a>
+</li>
+<li>Stackoverflow #2: <a href="http://stackoverflow.com/a/29551143/1581725">http://stackoverflow.com/a/29551143/1581725</a>
+</li>
+<li>Eclipsesource by <a href="http://profiles.google.com/110380137820502036004">Moritz Post</a>: <a href="http://eclipsesource.com/blogs/2012/11/02/integrating-gson-into-a-jax-rs-based-application/">http://eclipsesource.com/blogs/2012/11/02/integrating-gson-into-a-jax-rs-based-application/</a>
+</li>
+</ul>
+      </section>
+      <footer>
+        <p>This project is maintained by <a href="https://github.com/DominikAngerer">DominikAngerer</a></p>
+        <p><small>Hosted on GitHub Pages &mdash; Theme by <a href="https://github.com/orderedlist">orderedlist</a></small></p>
+      </footer>
+    </div>
+    <script src="javascripts/scale.fix.js"></script>
+    
+  </body>
+</html>
