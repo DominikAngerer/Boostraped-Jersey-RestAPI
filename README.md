@@ -99,4 +99,5 @@ Now it will return: `Okay, I hated the 404 Page here ;)`, because I really did.
 - Stackoverflow #2: http://stackoverflow.com/a/29551143/1581725
 - Stackoverflow #3: http://stackoverflow.com/a/29731719/1581725
 - Stackoverflow #4: http://stackoverflow.com/a/26829444/1581725
+- Stackoverflow #5: http://stackoverflow.com/a/29551143/1581725
 
