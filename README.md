@@ -85,8 +85,6 @@ Now it will return: `Okay, I hated the 404 Page here ;)`, because I really did.
 ### Links
 
 - Blog Entry [@Lanora]: http://lanora.io/2014/11/gson-jersey-provider/
-- Stackoverflow #1: http://stackoverflow.com/a/9516224/1581725
-- Stackoverflow #2: http://stackoverflow.com/a/29551143/1581725
 - Eclipsesource by [Moritz Post]: http://eclipsesource.com/blogs/2012/11/02/integrating-gson-into-a-jax-rs-based-application/
 
 [@eclipsesource]:http://eclipsesource.com/blogs/2012/11/02/integrating-gson-into-a-jax-rs-based-application/
@@ -94,5 +92,11 @@ Now it will return: `Okay, I hated the 404 Page here ;)`, because I really did.
 [@Lanora]:http://lanora.io/2014/11/gson-jersey-provider/
 [Mike Penz]:https://github.com/mikepenz
 [Thomas Pink]:https://github.com/thomaspink
-[Stackoverflow#1]:http://stackoverflow.com/a/9516224/1581725
-[Stackoverflow#2]:http://stackoverflow.com/a/29551143/1581725
+
+### Stackoverflow
+
+- Stackoverflow #1: http://stackoverflow.com/a/9516224/1581725
+- Stackoverflow #2: http://stackoverflow.com/a/29551143/1581725
+- Stackoverflow #3: http://stackoverflow.com/a/29731719/1581725
+- Stackoverflow #4: http://stackoverflow.com/a/26829444/1581725
+
